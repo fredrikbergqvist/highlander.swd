@@ -186,6 +186,12 @@ template {
     display: none;
 }
 
+ol,
+ul {
+    list-style: none;
+    padding: 0;
+}
+
 .sr-only {
     border: 0;
     clip: rect(1px, 1px, 1px, 1px);

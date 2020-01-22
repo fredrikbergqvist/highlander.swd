@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Head from "../components/head";
 import fetch from "isomorphic-unfetch";
 import { Card } from "../@types/Card";
-import CardTable from "../components/cardTable";
 import useDebounce from "../hooks/useDebounce";
 import CardSearchBar from "../components/CardSearchBar";
+import dynamic from "next/dynamic";
+
+const CardTable = dynamic(() => import("../components/cardTable"));
 
 interface OwnProps {
 }
@@ -39,13 +40,9 @@ const Home: NextFunctionComponent<Props> = () => {
 
   return (
     <main>
-      <Head>
-        <title>Highlander 40/40 - A Star Wars: Destiny deck building site</title>
-      </Head>
-
       <div className="hero">
-        <CardSearchBar onUpdate={onSearchUpdate} searchQuery={searchQuery} />
-        <CardTable cards={cards} />
+        <CardSearchBar onUpdate={onSearchUpdate} searchQuery={searchQuery}/>
+        <CardTable cards={cards}/>
       </div>
 
       <style jsx>{`

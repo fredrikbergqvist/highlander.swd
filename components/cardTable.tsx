@@ -2,6 +2,7 @@ import { Card } from "../@types/Card";
 import { NextFunctionComponent } from "../pages";
 import React from "react";
 import CardTableRow from "./cardTableRow";
+import CardTableSkeleton from "./cardTableSkeleton";
 
 interface OwnProps {
   cards: Card[];
@@ -22,9 +23,8 @@ const CardTable: NextFunctionComponent<Props> = ({ cards }) => {
       </tr>
       </thead>
       <tbody className="tbody">
-      {cards.map(card => (
-        <CardTableRow card={card} key={card.code} />
-      ))}
+      {cards?.length > 0 && cards.map(card => <CardTableRow card={card} key={card.code}/>)}
+      {cards?.length === 0 && <CardTableSkeleton numberOfRows={10}/>}
       </tbody>
 
       <style jsx>{`
