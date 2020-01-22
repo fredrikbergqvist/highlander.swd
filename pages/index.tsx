@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import fetch from "isomorphic-unfetch";
 import { Card } from "../@types/Card";
 import useDebounce from "../hooks/useDebounce";
-import CardSearchBar from "../components/CardSearchBar";
+import CardSearchBar from "../components/cardSearchBar";
 import dynamic from "next/dynamic";
 
 const CardTable = dynamic(() => import("../components/cardTable"));
@@ -41,8 +41,8 @@ const Home: NextFunctionComponent<Props> = () => {
   return (
     <main>
       <div className="hero">
-        <CardSearchBar onUpdate={onSearchUpdate} searchQuery={searchQuery}/>
-        <CardTable cards={cards}/>
+        <CardSearchBar onUpdate={onSearchUpdate} searchQuery={searchQuery} />
+        <CardTable cards={cards} />
       </div>
 
       <style jsx>{`
