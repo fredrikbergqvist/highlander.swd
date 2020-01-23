@@ -11,7 +11,7 @@ const CardTableSkeleton: NextFunctionComponent<Props> = ({ numberOfRows = 10 }) 
     const rows: any[] = [];
     for (let i = 0; i < numberOfRows; i++) {
       rows.push(
-        <tr>
+        <tr key={i}>
           <td className="set-info"></td>
           <td className="name"></td>
           <td></td>

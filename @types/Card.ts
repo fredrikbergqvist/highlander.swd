@@ -24,8 +24,8 @@ export type cardSetCodes =
   | "AoN"
   | "SoH"
   | "CM";
-export type cardTypeCode = "event" | "support" | "character";
-export type cardTypeName = "Event" | "Support" | "Character";
+export type cardTypeCode = "event" | "support" | "character" | "downgrade" | "upgrade" | "plot" | "battlefield";
+export type cardTypeName = "Event" | "Support" | "Character" | "Downgrade" | "Upgrade" | "Plot" | "Battlefield";
 export type cardFactionCode = "blue" | "yellow" | "red" | "gray";
 export type cardFactionName = "Force" | "Rogue" | "Command" | "General";
 export type cardAffiliationCode = "hero" | "neutral" | "villain";
