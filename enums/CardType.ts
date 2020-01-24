@@ -1,4 +1,4 @@
-export enum CardTypes {
+export enum CardType {
   "event" = "Event",
   "support" = "Support",
   "character" = "Character",

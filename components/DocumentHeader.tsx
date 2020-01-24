@@ -1,5 +1,5 @@
 import * as React from "react";
-import Nav from "./main-navigation";
+import MainNavigation from "./MainNavigation";
 
 interface OwnProps {
   title: string;
@@ -13,7 +13,7 @@ const DocumentHeader: React.FC<Props> = ({ title, subTitle }) => {
     <header className="main-header">
       <div className="content">
         <div className="navigation">
-          <Nav/>
+          <MainNavigation/>
         </div>
 
         <div className="sub-header">

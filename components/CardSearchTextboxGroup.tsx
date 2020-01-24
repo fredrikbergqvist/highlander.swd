@@ -1,5 +1,6 @@
 import React from "react";
 import { NextFunctionComponent } from "../pages";
+import { getFilterIcon } from "../helpers/iconHelper";
 
 interface OwnProps {
   onChange: (newValue: string) => void;
@@ -14,21 +15,28 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({ listObject, onC
     // @ts-ignore
     const val: keyof typeof listObject = key;
     const name: string = listObject[val] as string;
+    const Icon = getFilterIcon(listObject[val]);
     return (
-      <label className="checkbox-label" htmlFor={`${iconPrefix}checkbox-${key}`}>
-        <input type="checkbox" id={`${iconPrefix}checkbox-${key}`} onChange={() => onChange(key)} />
+      <label className="checkbox-label" htmlFor={`${iconPrefix}checkbox-${key}`} key={key}>
+        <input type="checkbox" id={`${iconPrefix}checkbox-${key}`} onChange={() => onChange(key)}/>
+        <Icon className="icon"/>
         <span className="sr-only">{name}</span>
-        <img src={`/icons/${iconPrefix}${key}.svg`} alt={name} title={name} width="20" />
         <style jsx>{`
           .checkbox-label {
             margin: 0 3px;
             display: inline-block;
+            cursor:pointer;
+          }
+          svg {
+            width: 20px;
+            fill: #ccc;
           }
           input {
-            color: #ccc;
+            position: absolute;
+            left: -999em;
           }
-          input:checked {
-            color: #333;
+          input:checked + svg {
+            fill: #333;
           }
         `}</style>
       </label>

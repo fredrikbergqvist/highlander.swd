@@ -30,7 +30,7 @@ const Home: NextFunctionComponent<Props> = () => {
   const onSearchUpdate = (newValue: string) => setSearchQuery(() => newValue);
 
   useEffect(() => {
-    getCards("/api/cards");
+    getCards("https://swdestinydb.com/api/public/cards/");
   }, []);
 
   useEffect(() => {
@@ -41,8 +41,8 @@ const Home: NextFunctionComponent<Props> = () => {
   return (
     <main>
       <div className="hero">
-        <CardSearchBar onUpdate={onSearchUpdate} searchQuery={searchQuery} />
-        <CardTable cards={cards} />
+        <CardSearchBar onUpdate={onSearchUpdate} searchQuery={searchQuery}/>
+        <CardTable cards={cards}/>
       </div>
 
       <style jsx>{`

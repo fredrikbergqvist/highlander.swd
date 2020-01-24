@@ -1,8 +1,8 @@
 import { Card } from "../@types/Card";
 import { NextFunctionComponent } from "../pages";
 import React from "react";
-import CardTableRow from "./cardTableRow";
 import CardTableSkeleton from "./cardTableSkeleton";
+import CardTableRow from "./cardTableRow";
 
 interface OwnProps {
   cards: Card[];
@@ -24,7 +24,7 @@ const CardTable: NextFunctionComponent<Props> = ({ cards }) => {
       </thead>
       <tbody className="tbody">
       {cards?.length > 0 && cards.map(card => <CardTableRow card={card} key={card.code}/>)}
-      {cards?.length === 0 && <CardTableSkeleton numberOfRows={10}/>}
+      {cards?.length === 0 && <CardTableSkeleton numberOfRows={30}/>}
       </tbody>
 
       <style jsx>{`

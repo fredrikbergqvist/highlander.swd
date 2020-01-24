@@ -1,6 +1,8 @@
 import { Card } from "../@types/Card";
 import { NextFunctionComponent } from "../pages";
 import React from "react";
+import { getFilterIcon } from "../helpers/iconHelper";
+import { Sets } from "../enums/Sets";
 
 interface OwnProps {
   card: Card;
@@ -9,10 +11,11 @@ interface OwnProps {
 type Props = OwnProps;
 
 const CardTableRow: NextFunctionComponent<Props> = ({ card }) => {
+  const Icon = getFilterIcon(card.set_name as Sets);
   return (
     <tr>
       <td className="set-info">
-        <img src={`/icons/set-${card.set_code}.svg`} alt={card.set_name} title={card.set_name} /> {card.position}
+        <Icon/> {card.position}
       </td>
       <td className="name">
         {card.name}

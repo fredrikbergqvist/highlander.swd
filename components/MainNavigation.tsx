@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const Nav = () => {
+const MainNavigation = () => {
   return (
     <nav className={`navigation`}>
       <ul className={`list `}>
@@ -60,4 +60,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default MainNavigation;

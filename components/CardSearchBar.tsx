@@ -1,7 +1,7 @@
 import { NextFunctionComponent } from "../pages";
 import React from "react";
 import { Sets } from "../enums/Sets";
-import { CardTypes } from "../enums/CardTypes";
+import { CardType } from "../enums/CardType";
 import CardSearchCheckboxGroup from "./cardSearchTextboxGroup";
 
 interface OwnProps {
@@ -40,7 +40,7 @@ const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, searchQuery }) 
       />
       <CardSearchCheckboxGroup
         legend={"Filter by type"}
-        listObject={CardTypes}
+        listObject={CardType}
         onChange={onCheckboxChange}
         iconPrefix="card-type-"
       />

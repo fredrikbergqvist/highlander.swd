@@ -1,5 +1,5 @@
 import React from "react";
-import BaseLayout from "../layout/base-layout";
+import BaseLayout from "../layout/BaseLayout";
 import "../styles/global.css";
 
 const HighlanderApp = ({ ...initialProps }: any) => {
