@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import fetch from "isomorphic-unfetch";
 import { Card } from "../@types/Card";
-import useDebounce from "../hooks/useDebounce";
-import CardSearchBar from "../components/cardSearchBar";
 import dynamic from "next/dynamic";
+import { getCards } from "../helpers/CardListHelper";
 
-const CardTable = dynamic(() => import("../components/cardTable"));
+const CardTable = dynamic(() => import("../components/CardTable"));
+const CardSearchBar = dynamic(() => import("../components/CardSearchBar"));
 
 interface OwnProps {
 }
@@ -19,24 +18,18 @@ export interface NextFunctionComponent<T> extends React.FunctionComponent<T> {
 const Home: NextFunctionComponent<Props> = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const debouncedSearchTerm = useDebounce(searchQuery, 350);
-  const getCards = (api: string) => {
-    fetch(api)
-      .then((result: any) => result.json())
-      .then((result: Card[]) => {
-        setCards(result);
-      });
-  };
+  //const debouncedSearchTerm = useDebounce(searchQuery, 350);
+
   const onSearchUpdate = (newValue: string) => setSearchQuery(() => newValue);
 
   useEffect(() => {
-    getCards("https://swdestinydb.com/api/public/cards/");
+    getCards().then(result => setCards(result));
   }, []);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     if (searchQuery === "") return getCards("/api/cards");
     getCards(`/api/cards/${searchQuery}`);
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm]);*/
 
   return (
     <main>

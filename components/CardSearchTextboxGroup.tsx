@@ -25,7 +25,7 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({ listObject, onC
           .checkbox-label {
             margin: 0 3px;
             display: inline-block;
-            cursor:pointer;
+            cursor: pointer;
           }
           svg {
             width: 20px;
@@ -35,8 +35,29 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({ listObject, onC
             position: absolute;
             left: -999em;
           }
+          input:focus + svg {
+            fill: #777;
+          }
           input:checked + svg {
             fill: #333;
+          }
+          label {
+            position: relative;
+          }
+          input:focus + span,
+          label:hover span {
+            clip: auto;
+            clip-path: none;
+            height: auto;
+            margin: 0;
+            overflow: unset;
+            padding: 5px 10px;
+            background-color: #fff;
+            position: absolute;
+            width: auto;
+            top: 20px;
+            left: 0;
+            border: 1px solid #333;
           }
         `}</style>
       </label>
