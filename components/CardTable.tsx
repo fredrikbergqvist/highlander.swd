@@ -1,18 +1,20 @@
 import { Card } from "../@types/Card";
 import { NextFunctionComponent } from "../pages";
 import React from "react";
-import CardTableSkeleton from "./cardTableSkeleton";
-import CardTableRow from "./cardTableRow";
+import CardTableSkeleton from "./CardTableSkeleton";
+import CardTableRow from "./CardTableRow";
 
 interface OwnProps {
   cards: Card[];
+  isLoading: boolean;
 }
 
 type Props = OwnProps;
 
-const CardTable: NextFunctionComponent<Props> = ({ cards }) => {
+const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading }) => {
+  const isLoadingClass = isLoading ? "loading" : "";
   return (
-    <table className="table">
+    <table className={`table ${isLoadingClass}`}>
       <thead className="thead">
       <tr>
         <th>#</th>
@@ -23,8 +25,8 @@ const CardTable: NextFunctionComponent<Props> = ({ cards }) => {
       </tr>
       </thead>
       <tbody className="tbody">
-      {cards?.length > 0 && cards.map(card => <CardTableRow card={card} key={card.code}/>)}
-      {cards?.length === 0 && <CardTableSkeleton numberOfRows={30}/>}
+      {cards?.length > 0 && cards.map(card => <CardTableRow card={card} key={card.code} />)}
+      {cards?.length === 0 && isLoading && <CardTableSkeleton numberOfRows={15} />}
       </tbody>
 
       <style jsx>{`
@@ -32,6 +34,9 @@ const CardTable: NextFunctionComponent<Props> = ({ cards }) => {
           width: 100%;
           table-layout: fixed;
           border-collapse: collapse;
+        }
+        .loading {
+          opacity: 0.5;
         }
         thead {
           border-bottom: 1px solid #333;

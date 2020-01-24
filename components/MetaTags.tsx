@@ -10,18 +10,17 @@ interface OwnProps {
 
 type Props = OwnProps;
 
-export const shortSiteDescription =
-  "Web developer with over 22 years of experience. Writing about javascript and front end techniques";
+export const shortSiteDescription = "Highlander 40/40 - A Star Wars: Destiny deck building site";
 
 const MetaTags: React.FC<Props> = props => {
   const {
     descriptionText = shortSiteDescription,
     canonicalPath = "",
-    title = "Blog by Fredrik Bergqvist",
-    mainImageUrl = "https://www.bergqvist.it/profile-512x512.png",
+    title = "Highlander 40/40 - A Star Wars: Destiny deck building site",
+    mainImageUrl = "",
     keywords = ""
   } = props;
-  const friendlyUrl = `https://www.bergqvist.it/${canonicalPath}`;
+  const friendlyUrl = `https://www.narve.se/${canonicalPath}`;
   return (
     <>
       <link rel="canonical" href={friendlyUrl} />
@@ -29,7 +28,7 @@ const MetaTags: React.FC<Props> = props => {
       <meta
         name="keywords"
         content={`${keywords &&
-          keywords + ", "}react, redux, javascript, typescript, web development, css, html, angular, web`}
+        keywords + ", "}Star Wars Destiny, deck builder, Highlander 40/40, Card game, CCG, collectible card game`}
       />
 
       <meta property="og:type" content="website" />

@@ -2,18 +2,24 @@ import { NextFunctionComponent } from "../pages";
 import React from "react";
 import { Sets } from "../enums/Sets";
 import { CardType } from "../enums/CardType";
-import CardSearchCheckboxGroup from "./cardSearchTextboxGroup";
+import CardSearchCheckboxGroup from "./CardSearchTextboxGroup";
+import { CardFilter } from "../@types/CardFilter";
 
 interface OwnProps {
-  onUpdate: (newValue: string) => void;
-  searchQuery: string;
+  onUpdate: (updatedFilter: CardFilter) => void;
+  filter: CardFilter;
 }
 
 type Props = OwnProps;
 
-const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, searchQuery }) => {
-  const onCheckboxChange = (setKey: string) => {
-    console.log(setKey);
+const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, filter }) => {
+  const onSetCheckboxChange = (updatedSetFilter: string[]) => {
+    console.log(updatedSetFilter);
+    onUpdate({ ...filter, sets: updatedSetFilter });
+  };
+  const onTypeCheckboxChange = (updatedTypesFilter: string[]) => {
+    console.log(updatedTypesFilter);
+    onUpdate({ ...filter, types: updatedTypesFilter });
   };
 
   return (
@@ -26,8 +32,8 @@ const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, searchQuery }) 
         <input
           type="text"
           placeholder="Search cards"
-          value={searchQuery}
-          onChange={e => onUpdate(e.target.value)}
+          value={filter.query}
+          onChange={e => onUpdate({ ...filter, query: e.target.value })}
           className={"search"}
           id="card-search-input"
         />
@@ -35,14 +41,16 @@ const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, searchQuery }) 
       <CardSearchCheckboxGroup
         legend={"Filter by set"}
         listObject={Sets}
-        onChange={onCheckboxChange}
+        onChange={onSetCheckboxChange}
         iconPrefix="set-"
+        filter={filter.sets}
       />
       <CardSearchCheckboxGroup
         legend={"Filter by type"}
         listObject={CardType}
-        onChange={onCheckboxChange}
+        onChange={onTypeCheckboxChange}
         iconPrefix="card-type-"
+        filter={filter.types}
       />
 
       <style jsx>{`

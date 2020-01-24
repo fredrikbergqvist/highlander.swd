@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "../@types/Card";
 import dynamic from "next/dynamic";
-import { getCards } from "../helpers/CardListHelper";
+import { defaultFilter, getCards } from "../helpers/CardListHelper";
+import { CardFilter } from "../@types/CardFilter";
+import useDebounce from "../hooks/useDebounce";
 
 const CardTable = dynamic(() => import("../components/CardTable"));
 const CardSearchBar = dynamic(() => import("../components/CardSearchBar"));
@@ -17,25 +19,34 @@ export interface NextFunctionComponent<T> extends React.FunctionComponent<T> {
 
 const Home: NextFunctionComponent<Props> = () => {
   const [cards, setCards] = useState<Card[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  //const debouncedSearchTerm = useDebounce(searchQuery, 350);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [filter, setFilter] = useState<CardFilter>({ ...defaultFilter });
+  const debouncedFilter = useDebounce(filter, 350);
 
-  const onSearchUpdate = (newValue: string) => setSearchQuery(() => newValue);
+  const onSearchUpdate = (updatedFilter: CardFilter) => {
+    setLoading(true);
+    setFilter(updatedFilter);
+  };
 
   useEffect(() => {
-    getCards().then(result => setCards(result));
+    getCards().then(result => {
+      setLoading(false);
+      setCards(result);
+    });
   }, []);
 
-  /*  useEffect(() => {
-    if (searchQuery === "") return getCards("/api/cards");
-    getCards(`/api/cards/${searchQuery}`);
-  }, [debouncedSearchTerm]);*/
+  useEffect(() => {
+    getCards(filter).then(result => {
+      setLoading(false);
+      setCards(result);
+    });
+  }, [debouncedFilter]);
 
   return (
     <main>
       <div className="hero">
-        <CardSearchBar onUpdate={onSearchUpdate} searchQuery={searchQuery}/>
-        <CardTable cards={cards}/>
+        <CardSearchBar onUpdate={onSearchUpdate} filter={filter} />
+        <CardTable cards={cards} isLoading={loading} />
       </div>
 
       <style jsx>{`

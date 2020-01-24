@@ -27,7 +27,7 @@ const getStoredCards = async (): Promise<Card[]> => {
   return [...cards];
 };
 
-const defaultFilter: CardFilter = {
+export const defaultFilter: CardFilter = {
   sets: [Sets.SoH, Sets.CONV],
   types: [CardType.upgrade, CardType.support, CardType.event, CardType.character],
   query: ""
@@ -49,10 +49,18 @@ const filterCardsBySets = (sets: string[] = [], cardList: Card[]) => {
 
   return [...cardList].filter((card: Card) => sets.some(set => card.set_name === set));
 };
+const filterCardsByType = (types: string[] = [], cardList: Card[]) => {
+  if (types.length === 0) {
+    return cardList;
+  }
+
+  return [...cardList].filter((card: Card) => types.some(type => card.type_name === type));
+};
 
 export const getCards = async (filter: CardFilter = { ...defaultFilter }): Promise<Card[]> => {
   let filteredCards = await getStoredCards();
   filteredCards = await filterCardsByQuery(filter.query, filteredCards);
   filteredCards = await filterCardsBySets(filter.sets, filteredCards);
+  filteredCards = await filterCardsByType(filter.types, filteredCards);
   return filteredCards;
 };
