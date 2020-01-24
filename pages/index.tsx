@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "../@types/Card";
 import dynamic from "next/dynamic";
-import { defaultFilter, getCards } from "../helpers/CardListHelper";
+import { defaultFilter, getCards } from "../helpers/cardListHelper";
 import { CardFilter } from "../@types/CardFilter";
 import useDebounce from "../hooks/useDebounce";
 
