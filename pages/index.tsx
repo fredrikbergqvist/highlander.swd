@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import fetch from "isomorphic-unfetch";
 import { Card } from "../@types/Card";
-import useDebounce from "../hooks/useDebounce";
-import CardSearchBar from "../components/CardSearchBar";
 import dynamic from "next/dynamic";
+import { getCards } from "../helpers/cardListHelper";
+import { CardFilter } from "../@types/CardFilter";
+import useDebounce from "../hooks/useDebounce";
+import { defaultFilter } from "../helpers/filterHelper";
 
-const CardTable = dynamic(() => import("../components/cardTable"));
+const CardTable = dynamic(() => import("../components/CardTable"));
+const CardSearchBar = dynamic(() => import("../components/CardSearchBar"));
 
 interface OwnProps {
 }
@@ -18,31 +20,34 @@ export interface NextFunctionComponent<T> extends React.FunctionComponent<T> {
 
 const Home: NextFunctionComponent<Props> = () => {
   const [cards, setCards] = useState<Card[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const debouncedSearchTerm = useDebounce(searchQuery, 350);
-  const getCards = (api: string) => {
-    fetch(api)
-      .then((result: any) => result.json())
-      .then((result: Card[]) => {
-        setCards(result);
-      });
+  const [loading, setLoading] = useState<boolean>(true);
+  const [filter, setFilter] = useState<CardFilter>({ ...defaultFilter });
+  const debouncedFilter = useDebounce(filter, 350);
+
+  const onSearchUpdate = (updatedFilter: CardFilter) => {
+    setLoading(true);
+    setFilter(updatedFilter);
   };
-  const onSearchUpdate = (newValue: string) => setSearchQuery(() => newValue);
 
   useEffect(() => {
-    getCards("/api/cards");
+    getCards().then(result => {
+      setLoading(false);
+      setCards(result);
+    });
   }, []);
 
   useEffect(() => {
-    if (searchQuery === "") return getCards("/api/cards");
-    getCards(`/api/cards/${searchQuery}`);
-  }, [debouncedSearchTerm]);
+    getCards(filter).then(result => {
+      setLoading(false);
+      setCards(result);
+    });
+  }, [debouncedFilter]);
 
   return (
     <main>
       <div className="hero">
-        <CardSearchBar onUpdate={onSearchUpdate} searchQuery={searchQuery}/>
-        <CardTable cards={cards}/>
+        <CardSearchBar onUpdate={onSearchUpdate} filter={filter} />
+        <CardTable cards={cards} isLoading={loading} />
       </div>
 
       <style jsx>{`
