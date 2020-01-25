@@ -1,5 +1,6 @@
 import * as React from "react";
 import MainNavigation from "./MainNavigation";
+import DeathStarIcon from "./icon/DeathStarIcon";
 
 interface OwnProps {
   title: string;
@@ -13,10 +14,11 @@ const DocumentHeader: React.FC<Props> = ({ title, subTitle }) => {
     <header className="main-header">
       <div className="content">
         <div className="navigation">
-          <MainNavigation/>
+          <MainNavigation />
         </div>
 
         <div className="sub-header">
+          <DeathStarIcon />
           <h1 className="main-heading">
             <span>{title}</span>
           </h1>
@@ -64,7 +66,6 @@ const DocumentHeader: React.FC<Props> = ({ title, subTitle }) => {
           margin-left: 16px;
         }
         .sub-header p {
-          display: none;
           text-align: center;
           margin: 0;
         }

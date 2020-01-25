@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "../@types/Card";
 import dynamic from "next/dynamic";
-import { defaultFilter, getCards } from "../helpers/cardListHelper";
+import { getCards } from "../helpers/cardListHelper";
 import { CardFilter } from "../@types/CardFilter";
 import useDebounce from "../hooks/useDebounce";
+import { defaultFilter } from "../helpers/filterHelper";
 
 const CardTable = dynamic(() => import("../components/CardTable"));
 const CardSearchBar = dynamic(() => import("../components/CardSearchBar"));

@@ -2,8 +2,7 @@ import fetch from "isomorphic-unfetch";
 import { Card } from "../@types/Card";
 import { getCardListSessionStorage, setCardListSessionStorage } from "./SessionStorageHelper";
 import { CardFilter } from "../@types/CardFilter";
-import { Sets } from "../enums/Sets";
-import { CardType } from "../enums/CardType";
+import { defaultFilter, filterCardsByQuery, filterCardsBySets, filterCardsByType } from "./filterHelper";
 
 const SWDB_API_BASE = "https://swdestinydb.com/api";
 const SWDB_API_CARDS = "/public/cards/";
@@ -27,40 +26,14 @@ const getStoredCards = async (): Promise<Card[]> => {
   return [...cards];
 };
 
-export const defaultFilter: CardFilter = {
-  sets: [Sets.SoH, Sets.CONV],
-  types: [CardType.upgrade, CardType.support, CardType.event, CardType.character],
-  query: ""
-};
-
-const filterCardsByQuery = (query: string = "", cardList: Card[]) => {
-  if (!query) {
-    return cardList;
-  }
-
-  query = query.toLowerCase();
-  return [...cardList].filter((card: Card) => card.name.toLowerCase().includes(query));
-};
-
-const filterCardsBySets = (sets: string[] = [], cardList: Card[]) => {
-  if (sets.length === 0) {
-    return cardList;
-  }
-
-  return [...cardList].filter((card: Card) => sets.some(set => card.set_name === set));
-};
-const filterCardsByType = (types: string[] = [], cardList: Card[]) => {
-  if (types.length === 0) {
-    return cardList;
-  }
-
-  return [...cardList].filter((card: Card) => types.some(type => card.type_name === type));
-};
-
 export const getCards = async (filter: CardFilter = { ...defaultFilter }): Promise<Card[]> => {
   let filteredCards = await getStoredCards();
+  console.time("Card filter");
   filteredCards = await filterCardsByQuery(filter.query, filteredCards);
+  console.timeLog("Card filter");
   filteredCards = await filterCardsBySets(filter.sets, filteredCards);
+  console.timeLog("Card filter");
   filteredCards = await filterCardsByType(filter.types, filteredCards);
+  console.timeEnd("Card filter");
   return filteredCards;
 };
