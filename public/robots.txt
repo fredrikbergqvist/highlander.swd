@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+sitemap: https://www.bergqvist.it/sitemap.xml

@@ -23,6 +23,10 @@ const BaseLayout: React.FC<Props> = props => {
           margin: 0 auto;
           min-width: auto;
         }
+        main {
+          width: 90%;
+          margin: 0 auto;
+        }
       `}</style>
     </section>
   );

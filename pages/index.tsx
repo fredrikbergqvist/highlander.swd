@@ -5,6 +5,8 @@ import { getCards } from "../helpers/cardListHelper";
 import { CardFilter } from "../@types/CardFilter";
 import useDebounce from "../hooks/useDebounce";
 import { defaultFilter } from "../helpers/filterHelper";
+import MetaTags from "../components/MetaTags";
+import Head from "next/head";
 
 const CardTable = dynamic(() => import("../components/CardTable"));
 const CardSearchBar = dynamic(() => import("../components/CardSearchBar"));
@@ -44,19 +46,24 @@ const Home: NextFunctionComponent<Props> = () => {
   }, [debouncedFilter]);
 
   return (
-    <main>
+    <>
+
+      <Head>
+        <MetaTags />
+        <title>Star Wars: Destiny net</title>
+      </Head>
       <div className="hero">
         <CardSearchBar onUpdate={onSearchUpdate} filter={filter} />
         <CardTable cards={cards} isLoading={loading} />
       </div>
 
-      <style jsx>{`
-        main {
-          width: 90%;
-          margin: 0 auto;
-        }
+    <style jsx>{`
+      main {
+        width: 90%;
+        margin: 0 auto;
+      }
       `}</style>
-    </main>
+    </>
   );
 };
 
