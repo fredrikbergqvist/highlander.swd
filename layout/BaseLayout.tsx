@@ -12,7 +12,7 @@ const BaseLayout: React.FC<Props> = props => {
   const { children } = props;
   return (
     <section className="root">
-      <DocumentHeader title={"Highlander 40/40"} subTitle="A Star Wars: Destiny deck building site" />
+      <DocumentHeader title={"Star Wars: Destiny net"} subTitle="A Highlander 40/40 deck building site" />
 
       <main className="main content" itemScope itemType="http://schema.org/WebPage">
         {children}

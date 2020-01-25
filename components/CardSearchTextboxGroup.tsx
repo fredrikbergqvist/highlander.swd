@@ -24,8 +24,7 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
     const name: string = listObject[val] as string;
     const Icon = getFilterIcon(listObject[val]);
     const isChecked: boolean = filter.some(f => f === name);
-    const updateFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(e);
+    const updateFilter = () => {
       let updatedFilter = [...filter];
       if (isChecked) {
         return onChange(updatedFilter.filter(f => f !== name));

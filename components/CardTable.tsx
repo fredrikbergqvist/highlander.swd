@@ -19,8 +19,7 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading }) => {
       <tr>
         <th>#</th>
         <th className="name">Name</th>
-        <th>Cost</th>
-        <th>Points</th>
+        <th>Points/Cost</th>
         <th>Health</th>
       </tr>
       </thead>

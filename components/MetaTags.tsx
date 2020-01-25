@@ -10,17 +10,17 @@ interface OwnProps {
 
 type Props = OwnProps;
 
-export const shortSiteDescription = "Highlander 40/40 - A Star Wars: Destiny deck building site";
+export const shortSiteDescription = "A Star Wars: Destiny deck building site";
 
 const MetaTags: React.FC<Props> = props => {
   const {
     descriptionText = shortSiteDescription,
     canonicalPath = "",
-    title = "Highlander 40/40 - A Star Wars: Destiny deck building site",
+    title = "Star Wars: Destiny net",
     mainImageUrl = "",
     keywords = ""
   } = props;
-  const friendlyUrl = `https://www.narve.se/${canonicalPath}`;
+  const friendlyUrl = `https://www.swdestiny.net/${canonicalPath}`;
   return (
     <>
       <link rel="canonical" href={friendlyUrl} />

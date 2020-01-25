@@ -15,14 +15,13 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card }) => {
   return (
     <tr>
       <td className="set-info">
-        <Icon/> {card.position}
+        <Icon /> {card.position}
       </td>
       <td className="name">
         {card.name}
         {card.subtitle && <span> - {card.subtitle}</span>}
       </td>
-      <td>{card.cost || ""}</td>
-      <td>{card.points || ""}</td>
+      <td>{card.points || ""} {card.cost || ""}</td>
       <td>{card.health || ""}</td>
       <style jsx>{`
         .name {

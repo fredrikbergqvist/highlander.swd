@@ -24,9 +24,6 @@ const CardTableSkeleton: NextFunctionComponent<Props> = ({ numberOfRows = 10 }) 
           <td>
             <span>&nbsp;</span>
           </td>
-          <td>
-            <span>&nbsp;</span>
-          </td>
           <style jsx>{`
             .name {
               padding-left: 5px;
