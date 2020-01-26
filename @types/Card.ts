@@ -46,6 +46,9 @@ export interface Card {
   subtitle: string | null;
   text: string;
 
+  reprintOf_code: string;
+  reprintOf_name: string;
+
   set_code: cardSetCodes;
   set_name: cardSetNames;
   sides: string[];
