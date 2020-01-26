@@ -26,6 +26,14 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading }) => {
       <tbody className="tbody">
       {cards?.length > 0 && cards.map(card => <CardTableRow card={card} key={card.code} />)}
       {cards?.length === 0 && isLoading && <CardTableSkeleton numberOfRows={15} />}
+      {cards?.length === 0 && !isLoading && (
+        <tr className={"no-results"}>
+          <td colSpan={10}>
+            <span>No results founds!</span>
+            <span>Try a different set of filters or search terms!</span>
+          </td>
+        </tr>
+      )}
       </tbody>
 
       <style jsx>{`
@@ -51,6 +59,16 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading }) => {
         }
         .name {
           width: 250px;
+        }
+        .no-results {
+          padding: 10px;
+          text-align: center;
+          font-size: 20px;
+          font-weight: bold;
+        }
+        .no-results span {
+          padding: 10px;
+          display: block;
         }
       `}</style>
     </table>

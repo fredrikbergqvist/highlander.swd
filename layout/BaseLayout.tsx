@@ -12,17 +12,13 @@ const BaseLayout: React.FC<Props> = props => {
   const { children } = props;
   return (
     <>
-      <DocumentHeader title={"Star Wars: Destiny net"} subTitle="A Highlander 40/40 deck building site" />
+      <DocumentHeader title={"SWDestiny.net"} subTitle="A Star Wars: Destiny deck building site" />
 
       <main className="main content" itemScope itemType="http://schema.org/WebPage">
         {children}
       </main>
       <SiteFooter />
       <style jsx>{`
-        .root {
-          margin: 0 auto;
-          min-width: auto;
-        }
         main {
           width: 90%;
           margin: 0 auto;

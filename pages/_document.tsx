@@ -21,6 +21,7 @@ class HighlanderDocument extends Document {
       <Html lang={"en"}>
         <Head>
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+          <link rel="preconnect" href="https://res.cloudinary.com" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="robots" content="index, follow" />
           <meta name="twitter:site" content="@f_bergqvist" />
