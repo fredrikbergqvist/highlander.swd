@@ -1,4 +1,4 @@
-![Next.js Logo](../../packages/frameworks/logos/next.svg)
+![Holocron](https://res.cloudinary.com/bergqvist/image/upload/c_scale,w_500/v1580080483/Destiny/logo_lxwr5f.webp)
 
 # Next.js Example
 
