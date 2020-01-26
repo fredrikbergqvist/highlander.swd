@@ -4,9 +4,9 @@ import dynamic from "next/dynamic";
 import { getCards } from "../helpers/cardListHelper";
 import { CardFilter } from "../@types/CardFilter";
 import useDebounce from "../hooks/useDebounce";
-import { defaultFilter } from "../helpers/filterHelper";
 import MetaTags from "../components/MetaTags";
 import Head from "next/head";
+import { getCardFilterLocalStorage, setCardFilterLocalStorage } from "../helpers/LocalStorageHelper";
 
 const CardTable = dynamic(() => import("../components/CardTable"));
 const CardSearchBar = dynamic(() => import("../components/CardSearchBar"));
@@ -23,7 +23,7 @@ export interface NextFunctionComponent<T> extends React.FunctionComponent<T> {
 const Home: NextFunctionComponent<Props> = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [filter, setFilter] = useState<CardFilter>({ ...defaultFilter });
+  const [filter, setFilter] = useState<CardFilter>(getCardFilterLocalStorage());
   const debouncedFilter = useDebounce(filter, 350);
 
   const onSearchUpdate = (updatedFilter: CardFilter) => {
@@ -39,6 +39,7 @@ const Home: NextFunctionComponent<Props> = () => {
   }, []);
 
   useEffect(() => {
+    setCardFilterLocalStorage(filter);
     getCards(filter).then(result => {
       setLoading(false);
       setCards(result);
@@ -47,7 +48,6 @@ const Home: NextFunctionComponent<Props> = () => {
 
   return (
     <>
-
       <Head>
         <MetaTags />
         <title>Star Wars: Destiny net</title>
@@ -57,11 +57,11 @@ const Home: NextFunctionComponent<Props> = () => {
         <CardTable cards={cards} isLoading={loading} />
       </div>
 
-    <style jsx>{`
-      main {
-        width: 90%;
-        margin: 0 auto;
-      }
+      <style jsx>{`
+        main {
+          width: 90%;
+          margin: 0 auto;
+        }
       `}</style>
     </>
   );

@@ -11,13 +11,13 @@ type Props = OwnProps;
 const BaseLayout: React.FC<Props> = props => {
   const { children } = props;
   return (
-    <section className="root">
+    <>
       <DocumentHeader title={"Star Wars: Destiny net"} subTitle="A Highlander 40/40 deck building site" />
 
       <main className="main content" itemScope itemType="http://schema.org/WebPage">
         {children}
-        <SiteFooter />
       </main>
+      <SiteFooter />
       <style jsx>{`
         .root {
           margin: 0 auto;
@@ -28,7 +28,7 @@ const BaseLayout: React.FC<Props> = props => {
           margin: 0 auto;
         }
       `}</style>
-    </section>
+    </>
   );
 };
 

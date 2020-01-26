@@ -3,7 +3,6 @@ import { Card } from "../@types/Card";
 import { getCardListSessionStorage, setCardListSessionStorage } from "./SessionStorageHelper";
 import { CardFilter } from "../@types/CardFilter";
 import {
-  defaultFilter,
   filterCardsByAffiliation,
   filterCardsByFaction,
   filterCardsByQuery,
@@ -11,6 +10,7 @@ import {
   filterCardsBySets,
   filterCardsByType
 } from "./filterHelper";
+import { getCardFilterLocalStorage } from "./LocalStorageHelper";
 
 const SWDB_API_BASE = "https://swdestinydb.com/api";
 const SWDB_API_CARDS = "/public/cards/";
@@ -34,7 +34,7 @@ const getStoredCards = async (): Promise<Card[]> => {
   return [...cards];
 };
 
-export const getCards = async (filter: CardFilter = { ...defaultFilter }): Promise<Card[]> => {
+export const getCards = async (filter: CardFilter = getCardFilterLocalStorage()): Promise<Card[]> => {
   let filteredCards = await getStoredCards();
   filteredCards = await filterCardsByQuery(filter.query, filteredCards);
   filteredCards = await filterCardsBySets(filter.sets, filteredCards);

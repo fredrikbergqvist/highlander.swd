@@ -45,7 +45,7 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
           }
           svg {
             width: 20px;
-            fill: #ccc;
+            fill: #a28c5a;
           }
           input {
             position: absolute;

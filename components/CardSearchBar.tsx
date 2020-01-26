@@ -32,6 +32,7 @@ const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, filter }) => {
           id="card-search-input"
         />
       </fieldset>
+
       <CardSearchCheckboxGroup
         legend={"Filter by set"}
         listObject={Sets}
@@ -85,6 +86,7 @@ const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, filter }) => {
           flex-direction: row;
           flex-wrap: wrap;
           justify-content: space-around;
+          margin-bottom: 15px;
         }
         fieldset {
           border: none;
@@ -92,6 +94,7 @@ const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, filter }) => {
         }
         .search-field {
           width: 100%;
+          margin-bottom: 15px;
         }
         .search {
           width: 100%;

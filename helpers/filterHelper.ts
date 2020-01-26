@@ -21,6 +21,7 @@ export const filterCardsByQuery = (query: string = "", cardList: Card[]) => {
   return [...cardList].filter((card: Card) => card.name.toLowerCase().includes(query));
 };
 
+
 export const filterCardsBySets = (sets: string[] = [], cardList: Card[]) => {
   if (sets.length === 0) {
     return cardList;
