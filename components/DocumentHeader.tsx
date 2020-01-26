@@ -1,6 +1,5 @@
 import * as React from "react";
 import MainNavigation from "./MainNavigation";
-import DeathStarIcon from "./icon/DeathStarIcon";
 
 interface OwnProps {
   title: string;
@@ -18,7 +17,17 @@ const DocumentHeader: React.FC<Props> = ({ title, subTitle }) => {
         </div>
 
         <div className="sub-header">
-          <DeathStarIcon />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            focusable="false"
+            aria-hidden="true"
+            role="presentation"
+            className="suns-icon"
+            viewBox="0 0 330 280"
+          >
+            <circle cx="69.5" cy="69.5" fill="#faf3dd" r="67.725" />
+            <circle cx="246.5" cy="194.5" fill="#e5b66c" r="83.156" />
+          </svg>
           <h1 className="main-heading">
             <span>{title}</span>
           </h1>
@@ -27,6 +36,12 @@ const DocumentHeader: React.FC<Props> = ({ title, subTitle }) => {
       </div>
 
       <style jsx>{`
+        .suns-icon {
+          position: absolute;
+          right: 30px;
+          width: calc(100vw / 3);
+          z-index: -1;
+        }
         .main-header {
           padding: 8px;
         }
