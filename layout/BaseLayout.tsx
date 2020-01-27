@@ -1,7 +1,7 @@
 import * as React from "react";
-import DocumentHeader from "../components/DocumentHeader";
 import dynamic from "next/dynamic";
 
+const DocumentHeader = dynamic(() => import("../components/DocumentHeader"));
 const SiteFooter = dynamic(() => import("../components/SiteFooter"));
 
 interface OwnProps {
