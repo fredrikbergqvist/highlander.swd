@@ -19,8 +19,11 @@ import TwoPlayerGameSetIcon from "../components/icon/TwoPlayerGameSetIcon";
 import WayOfTheForceSetIcon from "../components/icon/WayOfTheForceSetIcon";
 import AwakeningsSetIcon from "../components/icon/AwakeningsSetIcon";
 import ConvergenceSetIcon from "../components/icon/ConvergenceSetIcon";
+import { Affiliation } from "../enums/Affiliation";
+import RebelAllianceIcon from "../components/icon/RebelAllianceIcon";
+import GalacticEmpireIcon from "../components/icon/GalacticEmpireIcon";
 
-export const getFilterIcon = (type: CardType | Sets) => {
+export const getFilterIcon = (type: CardType | Sets | Affiliation) => {
   switch (type) {
     case CardType.battlefield:
       return BattleFieldIcon;
@@ -59,6 +62,13 @@ export const getFilterIcon = (type: CardType | Sets) => {
       return WayOfTheForceSetIcon;
     case Sets.AW:
       return AwakeningsSetIcon;
+
+    case Affiliation.hero:
+      return RebelAllianceIcon;
+    case Affiliation.villain:
+      return GalacticEmpireIcon;
+    case Affiliation.neutral:
+      return DeathStarIcon;
 
     default:
       return DeathStarIcon;

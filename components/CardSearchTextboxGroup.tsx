@@ -8,6 +8,8 @@ interface OwnProps {
   legend: string;
   iconPrefix: string;
   filter: string[];
+  showText?: boolean;
+  showIcon?: boolean;
 }
 
 type Props = OwnProps;
@@ -16,7 +18,9 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
                                                                  onChange,
                                                                  legend,
                                                                  iconPrefix,
-                                                                 filter
+                                                                 filter = [],
+                                                                 showText = false,
+                                                                 showIcon = true
                                                                }) => {
   const checkboxMarkup = Object.keys(listObject).map(key => {
     // @ts-ignore
@@ -24,6 +28,7 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
     const name: string = listObject[val] as string;
     const Icon = getFilterIcon(listObject[val]);
     const isChecked: boolean = filter.some(f => f === name);
+    const labelTextClass = showText ? "" : "sr-only";
     const updateFilter = () => {
       let updatedFilter = [...filter];
       if (isChecked) {
@@ -35,8 +40,8 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
     return (
       <label className="checkbox-label" htmlFor={`${iconPrefix}checkbox-${key}`} key={key}>
         <input type="checkbox" id={`${iconPrefix}checkbox-${key}`} onChange={updateFilter} checked={isChecked} />
-        <Icon className="icon" />
-        <span className="sr-only">{name}</span>
+        {showIcon && <Icon className="icon" />}
+        <span className={labelTextClass}>{name}</span>
         <style jsx>{`
           .checkbox-label {
             margin: 0 3px;

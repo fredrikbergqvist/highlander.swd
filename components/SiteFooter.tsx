@@ -33,12 +33,10 @@ const SiteFooter: React.FC<Props> = () => (
 
     <style jsx>{`
       .footer {
-        padding: 0;
+        padding: 50px 0 0;
         margin: 0 auto;
-        height: 5vh;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
+        width: 90%;
+        height: 110px;
       }
       a {
         color: #f1dda8;
