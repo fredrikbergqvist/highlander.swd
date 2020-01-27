@@ -42,6 +42,5 @@ export const getCards = async (filter: CardFilter = getCardFilterLocalStorage())
   filteredCards = await filterCardsByRarity(filter.rarity, filteredCards);
   filteredCards = await filterCardsByAffiliation(filter.affiliation, filteredCards);
   filteredCards = await filterCardsByFaction(filter.faction, filteredCards);
-  console.log(filteredCards);
   return filteredCards;
 };
