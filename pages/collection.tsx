@@ -7,6 +7,8 @@ import useDebounce from "../hooks/useDebounce";
 import MetaTags from "../components/MetaTags";
 import Head from "next/head";
 import { getCardFilterLocalStorage, setCardFilterLocalStorage } from "../helpers/LocalStorageHelper";
+import { getCollection, getDefaultCollectionFilter } from "../helpers/collectionHelper";
+import { CardCollection } from "../@types/CardCollection";
 
 const CardTable = dynamic(() => import("../components/CardTable"));
 const CardSearchBar = dynamic(() => import("../components/CardSearchBar"));
@@ -20,10 +22,14 @@ export interface NextFunctionComponent<T> extends React.FunctionComponent<T> {
   getInitialProps?: any;
 }
 
-const Duplicates: NextFunctionComponent<Props> = () => {
+const Collection: NextFunctionComponent<Props> = () => {
   const [cards, setCards] = useState<Card[]>([]);
+  const [collection, setCollection] = useState<CardCollection>({});
   const [loading, setLoading] = useState<boolean>(true);
-  const [filter, setFilter] = useState<CardFilter>(getCardFilterLocalStorage());
+  const [filter, setFilter] = useState<CardFilter>({
+    ...getCardFilterLocalStorage(),
+    collection: getDefaultCollectionFilter()
+  });
   const debouncedFilter = useDebounce(filter, 350);
 
   const onSearchUpdate = (updatedFilter: CardFilter) => {
@@ -32,9 +38,13 @@ const Duplicates: NextFunctionComponent<Props> = () => {
   };
 
   useEffect(() => {
-    getCards().then(result => {
+    getCollection().then(collection => {
+      setCollection(collection);
+    });
+
+    getCards().then(cards => {
       setLoading(false);
-      setCards(result);
+      setCards(cards);
     });
   }, []);
 
@@ -49,22 +59,17 @@ const Duplicates: NextFunctionComponent<Props> = () => {
   return (
     <>
       <Head>
-        <MetaTags/>
-        <title>Star Wars: Destiny net</title>
+        <MetaTags />
+        <title>Collection - SWDestiny.net Holocron</title>
       </Head>
       <div className="hero">
-        <CardSearchBar onUpdate={onSearchUpdate} filter={filter}/>
-        <CardTable cards={cards} isLoading={loading}/>
+        <CardSearchBar onUpdate={onSearchUpdate} filter={filter} collection={collection} />
+        <CardTable cards={cards} isLoading={loading} showCollection={true} />
       </div>
 
-      <style jsx>{`
-        main {
-          width: 90%;
-          margin: 0 auto;
-        }
-      `}</style>
+      <style jsx>{``}</style>
     </>
   );
 };
 
-export default Duplicates;
+export default Collection;

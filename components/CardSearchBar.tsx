@@ -7,10 +7,12 @@ import { CardFilter } from "../@types/CardFilter";
 import { Affiliation } from "../enums/Affiliation";
 import { Faction } from "../enums/Faction";
 import { Rarity } from "../enums/Rarity";
+import { CardCollection } from "../@types/CardCollection";
 
 interface OwnProps {
   onUpdate: (updatedFilter: CardFilter) => void;
   filter: CardFilter;
+  collection?: CardCollection;
 }
 
 type Props = OwnProps;
@@ -79,6 +81,43 @@ const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, filter }) => {
         filter={filter.rarity}
       />
 
+      {filter.collection && (
+        <fieldset className="collection">
+          <legend>My collection</legend>
+
+          <input
+            type="checkbox"
+            id={`collection-owned`}
+            onChange={() => {
+              onUpdate({
+                ...filter,
+                collection: {
+                  ...filter.collection,
+                  missing: !filter.collection.missing
+                }
+              });
+            }}
+            checked={filter.collection.missing}
+          />
+          <label htmlFor="collection-owned">Missing cards</label>
+          <input
+            type="checkbox"
+            id={`collection-duplicates`}
+            onChange={() => {
+              onUpdate({
+                ...filter,
+                collection: {
+                  ...filter.collection,
+                  duplicates: !filter.collection.duplicates
+                }
+              });
+            }}
+            checked={filter.collection.duplicates}
+          />
+          <label htmlFor="collection-duplicates">Show only duplicates</label>
+        </fieldset>
+      )}
+
       <style jsx>{`
         form {
           text-align: center;
@@ -100,6 +139,12 @@ const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, filter }) => {
           width: 100%;
           padding: 20px 10px;
           margin: 10px 0;
+        }
+        .collection {
+          width: 100%;
+        }
+        .collection label {
+          margin: 0 5px;
         }
       `}</style>
     </form>

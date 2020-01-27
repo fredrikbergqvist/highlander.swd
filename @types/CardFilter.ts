@@ -1,3 +1,9 @@
+export interface CollectionFilter {
+  useCollection: boolean;
+  missing: boolean;
+  duplicates: boolean;
+}
+
 export interface CardFilter {
   sets: string[];
   types: string[];
@@ -5,4 +11,5 @@ export interface CardFilter {
   faction: string[];
   rarity: string[];
   query: string;
+  collection: CollectionFilter;
 }

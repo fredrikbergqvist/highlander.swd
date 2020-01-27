@@ -23,7 +23,7 @@ export interface NextFunctionComponent<T> extends React.FunctionComponent<T> {
 const Home: NextFunctionComponent<Props> = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [filter, setFilter] = useState<CardFilter>(getCardFilterLocalStorage());
+  const [filter, setFilter] = useState<CardFilter>({ ...getCardFilterLocalStorage(), collection: undefined });
   const debouncedFilter = useDebounce(filter, 350);
 
   const onSearchUpdate = (updatedFilter: CardFilter) => {
@@ -50,19 +50,14 @@ const Home: NextFunctionComponent<Props> = () => {
     <>
       <Head>
         <MetaTags />
-        <title>Star Wars: Destiny net</title>
+        <title>SWDestiny.net Holocron</title>
       </Head>
       <div className="hero">
         <CardSearchBar onUpdate={onSearchUpdate} filter={filter} />
         <CardTable cards={cards} isLoading={loading} />
       </div>
 
-      <style jsx>{`
-        main {
-          width: 90%;
-          margin: 0 auto;
-        }
-      `}</style>
+      <style jsx>{``}</style>
     </>
   );
 };

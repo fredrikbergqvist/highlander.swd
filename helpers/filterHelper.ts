@@ -2,6 +2,8 @@ import { Card } from "../@types/Card";
 import { CardFilter } from "../@types/CardFilter";
 import { Sets } from "../enums/Sets";
 import { CardType } from "../enums/CardType";
+import { CardCollection } from "../@types/CardCollection";
+import { getCollection } from "./collectionHelper";
 
 export const defaultFilter: CardFilter = {
   sets: [Sets.SoH, Sets.CONV],
@@ -9,7 +11,12 @@ export const defaultFilter: CardFilter = {
   affiliation: [],
   faction: [],
   rarity: [],
-  query: ""
+  query: "",
+  collection: {
+    useCollection: false,
+    missing: false,
+    duplicates: false
+  }
 };
 
 export const filterCardsByQuery = (query: string = "", cardList: Card[]) => {
@@ -20,7 +27,6 @@ export const filterCardsByQuery = (query: string = "", cardList: Card[]) => {
   query = query.toLowerCase();
   return [...cardList].filter((card: Card) => card.name.toLowerCase().includes(query));
 };
-
 
 export const filterCardsBySets = (sets: string[] = [], cardList: Card[]) => {
   if (sets.length === 0) {
@@ -60,4 +66,22 @@ export const filterCardsByAffiliation = (affiliations: string[] = [], cardList: 
   }
 
   return [...cardList].filter((card: Card) => affiliations.some(type => card.affiliation_name === type));
+};
+
+export const filterCardsByCollection = async (filter: CardFilter, cardList: Card[]) => {
+  if (!filter.collection) {
+    return cardList;
+  }
+  const collection: CardCollection = await getCollection();
+  return [...cardList].filter((card: Card) => {
+    const inCollection = collection[card.code];
+
+    if (filter.collection.duplicates && inCollection) {
+      return inCollection.quantity > 2;
+    }
+    if (filter.collection.missing) {
+      return !inCollection;
+    }
+    return !!inCollection;
+  });
 };
