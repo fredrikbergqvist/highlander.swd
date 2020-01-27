@@ -35,7 +35,17 @@ const nextConfig = {
         }
       },
       {
-        urlPattern: /^https:\/\/www.bergqvist.it\/?.*/,
+        urlPattern: /^https:\/\/www.swdestiny.net\/?.*/,
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "offlineCache",
+          expiration: {
+            maxEntries: 200
+          }
+        }
+      },
+      {
+        urlPattern: /^https:\/\/swdestiny.net\/?.*/,
         handler: "NetworkFirst",
         options: {
           cacheName: "offlineCache",
