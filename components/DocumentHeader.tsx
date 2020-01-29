@@ -14,28 +14,7 @@ const DocumentHeader: React.FC<Props> = ({ title, subTitle }) => {
         <div className="sub-header">
           <h1 className="main-heading">
             <picture className="profile-image">
-              <source
-                srcSet={`
-            https://res.cloudinary.com/bergqvist/image/upload/c_scale,w_500/v1580080483/Destiny/logo_lxwr5f.webp 500w,
-            https://res.cloudinary.com/bergqvist/image/upload/c_scale,w_280/v1580080483/Destiny/logo_lxwr5f.webp 280w
-          `}
-                sizes="(max-width: 630px) 280px,
-            (max-width: 600px) 500px,
-            500px"
-                type="image/webp"
-              />
-              <source
-                srcSet={`
-            https://res.cloudinary.com/bergqvist/image/upload/c_scale,w_500/v1580080483/Destiny/logo_lxwr5f.png 500w,
-            https://res.cloudinary.com/bergqvist/image/upload/c_scale,w_280/v1580080483/Destiny/logo_lxwr5f.png 280w
-          `}
-                sizes="(max-width: 630px) 280px,
-            (max-width: 600px) 500px,
-            500px"
-                type="image/png"
-              />
-
-              <img src="/images/profile-image-drawn_250x333.gif" alt="SwDestiny.net Holocron" width="500" height="93" />
+              <img src="/logo.svg" alt="SwDestiny.net Holocron" width="294" height="55" />
             </picture>
             <span className="sr-only">{title}</span>
           </h1>

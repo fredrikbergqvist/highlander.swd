@@ -3,11 +3,14 @@
     <msapplication>
         <tile>
 
-            <square70x70logo src="/ms-icon-70x70.png"/>
+            <square70x70logo
+                    src="https://res.cloudinary.com/bergqvist/image/upload/c_scale,w_70/v1580283550/Destiny/tatooine_square_akr59i.png"/>
 
-            <square150x150logo src="/ms-icon-150x150.png"/>
+            <square150x150logo
+                    src="https://res.cloudinary.com/bergqvist/image/upload/c_scale,w_150/v1580283550/Destiny/tatooine_square_akr59i.png"/>
 
-            <square310x310logo src="/ms-icon-310x310.png"/>
+            <square310x310logo
+                    src="https://res.cloudinary.com/bergqvist/image/upload/c_scale,w_310/v1580283550/Destiny/tatooine_square_akr59i.png"/>
             <TileColor>#ffc40d</TileColor>
         </tile>
     </msapplication>

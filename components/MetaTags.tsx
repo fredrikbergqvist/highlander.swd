@@ -17,7 +17,7 @@ const MetaTags: React.FC<Props> = props => {
     descriptionText = shortSiteDescription,
     canonicalPath = "",
     title = "Star Wars: Destiny net",
-    mainImageUrl = "",
+    mainImageUrl = "https://res.cloudinary.com/bergqvist/image/upload/c_scale,w_512/v1580283550/Destiny/tatooine_square_akr59i.png",
     keywords = ""
   } = props;
   const friendlyUrl = `https://www.swdestiny.net/${canonicalPath}`;

@@ -7,7 +7,6 @@ import EventIcon from "../components/icon/EventIcon";
 import PlotIcon from "../components/icon/PlotIcon";
 import SupportIcon from "../components/icon/SupportIcon";
 import UpgradeIcon from "../components/icon/UpgradeIcon";
-import DeathStarIcon from "../components/icon/DeathStarIcon";
 import LegaciesSetIcon from "../components/icon/LegaciesSetIcon";
 import AlliesOfNecessitySetIcon from "../components/icon/AlliesOfNecessitySetIcon";
 import AcrossTheGalaxySetIcon from "../components/icon/AcrossTheGalaxySetIcon";
@@ -22,6 +21,8 @@ import ConvergenceSetIcon from "../components/icon/ConvergenceSetIcon";
 import { Affiliation } from "../enums/Affiliation";
 import RebelAllianceIcon from "../components/icon/RebelAllianceIcon";
 import GalacticEmpireIcon from "../components/icon/GalacticEmpireIcon";
+import SenateSealIcon from "../components/icon/SenateSealIcon";
+import HolocronIcon from "../components/icon/HolocronIcon";
 
 export const getFilterIcon = (type: CardType | Sets | Affiliation) => {
   switch (type) {
@@ -68,9 +69,9 @@ export const getFilterIcon = (type: CardType | Sets | Affiliation) => {
     case Affiliation.villain:
       return GalacticEmpireIcon;
     case Affiliation.neutral:
-      return DeathStarIcon;
+      return SenateSealIcon;
 
     default:
-      return DeathStarIcon;
+      return HolocronIcon;
   }
 };

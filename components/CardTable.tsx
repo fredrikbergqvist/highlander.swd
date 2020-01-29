@@ -18,7 +18,7 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading, showCollect
     <table className={`table ${isLoadingClass}`}>
       <thead className="thead">
       <tr>
-        <th>#</th>
+        <th className="set">#</th>
         <th className="name">Name</th>
         {showCollection && (
           <>
@@ -29,7 +29,7 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading, showCollect
         {!showCollection && (
           <>
             <th className="cost">Points/Cost</th>
-            <th>Health</th>
+            <th className="health">Health</th>
           </>
         )}
       </tr>
@@ -65,15 +65,22 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading, showCollect
         }
 
         th {
-          width: 20px;
+          min-width: 20px;
+          width: 10%;
           padding-right: 5px;
           padding-left: 5px;
         }
+        .set {
+          width: 60px;
+        }
         .name {
-          width: 250px;
+          width: 40%;
         }
         .cost {
-          width: 30px;
+          width: 70px;
+        }
+        .health {
+          width: 50px;
         }
         .no-results {
           padding: 10px;

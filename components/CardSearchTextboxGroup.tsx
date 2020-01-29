@@ -1,6 +1,7 @@
 import React from "react";
 import { NextFunctionComponent } from "../pages";
 import { getFilterIcon } from "../helpers/iconHelper";
+import { faction, rarity } from "../styles/colors";
 
 interface OwnProps {
   onChange: (newValue: string[]) => void;
@@ -38,7 +39,7 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
       onChange(updatedFilter);
     };
     return (
-      <label className="checkbox-label" htmlFor={`${iconPrefix}checkbox-${key}`} key={key}>
+      <label className={`checkbox-label ${key}`} htmlFor={`${iconPrefix}checkbox-${key}`} key={key}>
         <input type="checkbox" id={`${iconPrefix}checkbox-${key}`} onChange={updateFilter} checked={isChecked} />
         {showIcon && <Icon className="icon" />}
         <span className={labelTextClass}>{name}</span>
@@ -49,18 +50,23 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
             cursor: pointer;
           }
           svg {
-            width: 20px;
-            fill: #a28c5a;
+            width: 40px;
+            fill: #333;
+            border: 1px solid #000;
+            border-radius: 50%;
+            padding: 5px;
+            background-color: #fff;
+            opacity: 0.5;
           }
           input {
             position: absolute;
             left: -999em;
           }
           input:focus + svg {
-            fill: #777;
+            opacity 1;
           }
           input:checked + svg {
-            fill: #333;
+            opacity 1;
           }
           label {
             position: relative;
@@ -76,9 +82,30 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
             background-color: #fff;
             position: absolute;
             width: auto;
-            top: 20px;
+            top: 40px;
             left: 0;
             border: 1px solid #333;
+          }
+          .L svg {
+            fill: ${rarity.legendary};
+          }
+          .R svg {
+            fill: ${rarity.rare};
+          }
+          .yellow svg,
+          .U svg {
+            fill: ${rarity.uncommon};
+          }
+          .blue svg,
+          .C svg {
+            fill: ${rarity.common};
+          }
+          .gray svg,
+          .S svg {
+            fill: ${rarity.starter};
+          }
+          .red svg {
+            fill: ${faction.command};
           }
         `}</style>
       </label>
@@ -88,6 +115,12 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
     <fieldset>
       <legend>{legend}</legend>
       {checkboxMarkup}
+      <style jsx>{`
+        fieldset {
+          margin: 0 20px 20px;
+          display: block;
+        }
+      `}</style>
     </fieldset>
   );
 };

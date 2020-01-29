@@ -130,6 +130,8 @@ const CardSearchBar: NextFunctionComponent<Props> = ({ onUpdate, filter }) => {
         fieldset {
           border: none;
           padding: 0;
+          margin: 0 20px;
+          display: block;
         }
         .search-field {
           width: 100%;
