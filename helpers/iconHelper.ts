@@ -22,6 +22,7 @@ import ConvergenceSetIcon from "../components/icon/ConvergenceSetIcon";
 import { Affiliation } from "../enums/Affiliation";
 import RebelAllianceIcon from "../components/icon/RebelAllianceIcon";
 import GalacticEmpireIcon from "../components/icon/GalacticEmpireIcon";
+import SenateSealIcon from "../components/icon/SenateSealIcon";
 
 export const getFilterIcon = (type: CardType | Sets | Affiliation) => {
   switch (type) {
@@ -68,7 +69,7 @@ export const getFilterIcon = (type: CardType | Sets | Affiliation) => {
     case Affiliation.villain:
       return GalacticEmpireIcon;
     case Affiliation.neutral:
-      return DeathStarIcon;
+      return SenateSealIcon;
 
     default:
       return DeathStarIcon;

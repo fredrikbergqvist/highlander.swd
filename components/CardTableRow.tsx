@@ -4,6 +4,7 @@ import React from "react";
 import { getFilterIcon } from "../helpers/iconHelper";
 import { Sets } from "../enums/Sets";
 import { getCollectionCardInfo } from "../helpers/collectionHelper";
+import { CardType } from "../enums/CardType";
 
 interface OwnProps {
   card: Card;
@@ -13,17 +14,21 @@ interface OwnProps {
 type Props = OwnProps;
 
 const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = false }) => {
-  const Icon = getFilterIcon(card.set_name as Sets);
+  const SetIcon = getFilterIcon(card.set_name as Sets);
+  const TypeIcon = getFilterIcon(card.type_name as CardType);
   const rarityClass = `rarity-${card.rarity_name}`;
   const collectionInfo = showCollection ? getCollectionCardInfo(card.code) : null;
   return (
     <tr className={rarityClass}>
       <td className="set-info">
-        <Icon /> {card.position}
+        <SetIcon /> {card.position}
       </td>
       <td className="name">
-        {card.name}
-        {card.subtitle && <span> - {card.subtitle}</span>}
+        <p>
+          <TypeIcon className={`type-icon faction-${card.faction_name}`} />
+          {card.name}
+          {card.subtitle && <span> - {card.subtitle}</span>}
+        </p>
       </td>
 
       {showCollection && (
@@ -32,7 +37,6 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
           <td>{collectionInfo?.dice}</td>
         </>
       )}
-
 
       {!showCollection && (
         <>
@@ -46,6 +50,14 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
         .name {
           text-align: left;
           padding-left: 5px;
+        }
+        .name p {
+          display: flex;
+          flex-direction: row;
+          margin: 0;
+        }
+        .name svg {
+          margin-right: 5px;
         }
 
         td {
@@ -61,7 +73,17 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
           flex-direction: row;
           justify-content: space-around;
         }
-        .cost {
+        .faction-Force {
+          fill: #6c86e2;
+        }
+        .faction-Command {
+          fill: #e26c6c;
+        }
+        .faction-Rogue {
+          fill: #e5b66c;
+        }
+        .faction-General {
+          fill: #ccc;
         }
 
         .rarity-Legendary .set-info {
