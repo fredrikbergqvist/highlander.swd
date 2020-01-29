@@ -5,6 +5,7 @@ import { getFilterIcon } from "../helpers/iconHelper";
 import { Sets } from "../enums/Sets";
 import { getCollectionCardInfo } from "../helpers/collectionHelper";
 import { CardType } from "../enums/CardType";
+import { faction, rarity } from "../styles/colors";
 
 interface OwnProps {
   card: Card;
@@ -16,18 +17,17 @@ type Props = OwnProps;
 const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = false }) => {
   const SetIcon = getFilterIcon(card.set_name as Sets);
   const TypeIcon = getFilterIcon(card.type_name as CardType);
-  const rarityClass = `rarity-${card.rarity_name}`;
   const collectionInfo = showCollection ? getCollectionCardInfo(card.code) : null;
   return (
-    <tr className={rarityClass}>
+    <tr>
       <td className="set-info">
         <SetIcon /> {card.position}
       </td>
-      <td className="name">
+      <td className={`name rarity-${card.rarity_name}`}>
         <p>
           <TypeIcon className={`type-icon faction-${card.faction_name}`} />
-          {card.name}
-          {card.subtitle && <span> - {card.subtitle}</span>}
+          {<span>{card.name} </span>}
+          {card.subtitle && <span className="sub-title"> - {card.subtitle}</span>}
         </p>
       </td>
 
@@ -50,6 +50,7 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
         .name {
           text-align: left;
           padding-left: 5px;
+          border-left: 5px solid transparent;
         }
         .name p {
           display: flex;
@@ -72,34 +73,35 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
           display: flex;
           flex-direction: row;
           justify-content: space-around;
+          border: none;
         }
         .faction-Force {
-          fill: #6c86e2;
+          fill: ${faction.force};
         }
         .faction-Command {
-          fill: #e26c6c;
+          fill: ${faction.command};
         }
         .faction-Rogue {
-          fill: #e5b66c;
+          fill: ${faction.rogue};
         }
         .faction-General {
-          fill: #ccc;
+          fill: ${faction.general};
         }
 
-        .rarity-Legendary .set-info {
-          background-color: #d9a0ff;
+        .rarity-Starter {
+          border-left-color: ${rarity.starter};
         }
-        .rarity-Common .set-info {
-          background-color: #b7ceff;
+        .rarity-Common {
+          border-left-color: ${rarity.common};
         }
-        .rarity-Uncommon .set-info {
-          background-color: #fffbb7;
+        .rarity-Uncommon {
+          border-left-color: ${rarity.uncommon};
         }
-        .rarity-Rare .set-info {
-          background-color: #c2ffbf;
+        .rarity-Rare {
+          border-left-color: ${rarity.rare};
         }
-        .rarity-Starter .set-info {
-          background-color: #dbdbdb;
+        .rarity-Legendary {
+          border-left-color: ${rarity.legendary};
         }
 
         svg {

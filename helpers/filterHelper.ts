@@ -1,13 +1,11 @@
 import { Card } from "../@types/Card";
 import { CardFilter } from "../@types/CardFilter";
-import { Sets } from "../enums/Sets";
-import { CardType } from "../enums/CardType";
 import { CardCollection } from "../@types/CardCollection";
 import { getCollection } from "./collectionHelper";
 
 export const defaultFilter: CardFilter = {
-  sets: [Sets.SoH, Sets.CONV],
-  types: [CardType.upgrade, CardType.support, CardType.event, CardType.character],
+  sets: [],
+  types: [],
   affiliation: [],
   faction: [],
   rarity: [],
