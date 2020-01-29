@@ -1,11 +1,13 @@
 import { Card } from "../@types/Card";
 import { NextFunctionComponent } from "../pages";
-import React from "react";
+import React, { useState } from "react";
 import { getFilterIcon } from "../helpers/iconHelper";
 import { Sets } from "../enums/Sets";
 import { getCollectionCardInfo } from "../helpers/collectionHelper";
 import { CardType } from "../enums/CardType";
 import { faction, rarity } from "../styles/colors";
+import dynamic from "next/dynamic";
+import { Affiliation } from "../enums/Affiliation";
 
 interface OwnProps {
   card: Card;
@@ -15,20 +17,26 @@ interface OwnProps {
 type Props = OwnProps;
 
 const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = false }) => {
+  const [showModal, setShowModal] = useState<boolean>(false);
   const SetIcon = getFilterIcon(card.set_name as Sets);
   const TypeIcon = getFilterIcon(card.type_name as CardType);
+  const AffiliationIcon = getFilterIcon(card.affiliation_name as Affiliation);
   const collectionInfo = showCollection ? getCollectionCardInfo(card.code) : null;
+  const factionClass = `faction-${card.faction_name}`;
+  const CardModal = dynamic(() => import("./CardModal/CardModal"));
   return (
     <tr>
       <td className="set-info">
         <SetIcon /> {card.position}
       </td>
       <td className={`name rarity-${card.rarity_name}`}>
-        <p>
-          <TypeIcon className={`type-icon faction-${card.faction_name}`} />
+        <a href="#" onMouseOver={() => setShowModal(true)} onMouseOut={() => setShowModal(false)}>
+          <AffiliationIcon className={` ${factionClass}`} />
+          <TypeIcon className={`type-icon ${factionClass}`} />
           {<span>{card.name} </span>}
           {card.subtitle && <span className="sub-title"> - {card.subtitle}</span>}
-        </p>
+        </a>
+        {showModal && <CardModal card={card} />}
       </td>
 
       {showCollection && (
