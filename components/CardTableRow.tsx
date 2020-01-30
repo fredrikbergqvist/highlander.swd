@@ -8,6 +8,7 @@ import { CardType } from "../enums/CardType";
 import { faction, rarity } from "../styles/colors";
 import dynamic from "next/dynamic";
 import { Affiliation } from "../enums/Affiliation";
+import { mediaWidth } from "../styles/sizes";
 
 interface OwnProps {
   card: Card;
@@ -27,16 +28,16 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
   return (
     <tr>
       <td className="set-info">
-        <SetIcon /> {card.position}
+        <SetIcon/> {card.position}
       </td>
       <td className={`name rarity-${card.rarity_name}`}>
         <a href="#" onMouseOver={() => setShowModal(true)} onMouseOut={() => setShowModal(false)}>
-          <AffiliationIcon className={` ${factionClass}`} />
-          <TypeIcon className={`type-icon ${factionClass}`} />
+          <AffiliationIcon className={` ${factionClass}`}/>
+          <TypeIcon className={`type-icon ${factionClass}`}/>
           {<span>{card.name} </span>}
           {card.subtitle && <span className="sub-title"> - {card.subtitle}</span>}
         </a>
-        {showModal && <CardModal card={card} />}
+        {showModal && <CardModal card={card}/>}
       </td>
 
       {showCollection && (
@@ -51,14 +52,23 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
           <td className="cost">
             {card.points || ""} {card.cost || ""}
           </td>
-          <td>{card.health || ""}</td>
+          <td className="health">{card.health || ""}</td>
         </>
       )}
       <style jsx>{`
+        td {
+          border-right: 1px solid #333;
+          text-align: center;
+          padding: 2px 5px;
+        }
+        td:last-child {
+          border-right: none;
+        }
         .name {
           text-align: left;
           padding-left: 5px;
           border-left: 5px solid transparent;
+          border-right: none;
         }
         .name p {
           display: flex;
@@ -69,13 +79,9 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
           margin-right: 5px;
         }
 
-        td {
-          border-right: 1px solid #333;
-          text-align: center;
-          padding: 2px 5px;
-        }
-        td:last-child {
-          border-right: none;
+        .cost,
+        .health {
+          display: none;
         }
         .set-info {
           display: flex;
@@ -116,6 +122,16 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
           display: inline-block;
           width: 20px;
           padding: 2px 2px;
+        }
+
+        @media (min-width: ${mediaWidth.l}) {
+          .cost,
+          .health {
+            display: table-cell;
+          }
+          .name {
+            border-right: 1px solid #333;
+          }
         }
       `}</style>
     </tr>
