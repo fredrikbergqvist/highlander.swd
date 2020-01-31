@@ -86,28 +86,32 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
             left: 0;
             border: 1px solid #333;
           }
-          .L svg {
-            fill: ${rarity.legendary};
-          }
-          .R svg {
-            fill: ${rarity.rare};
-          }
-          .yellow svg,
-          .U svg {
-            fill: ${rarity.uncommon};
-          }
-          .blue svg,
-          .C svg {
-            fill: ${rarity.common};
-          }
-          .gray svg,
-          .S svg {
-            fill: ${rarity.starter};
-          }
-          .red svg {
-            fill: ${faction.command};
-          }
         `}</style>
+        <style jsx global>
+          {`
+            .L svg {
+              fill: ${rarity.legendary};
+            }
+            .R svg {
+              fill: ${rarity.rare};
+            }
+            .yellow svg,
+            .U svg {
+              fill: ${rarity.uncommon};
+            }
+            .blue svg,
+            .C svg {
+              fill: ${rarity.common};
+            }
+            .gray svg,
+            .S svg {
+              fill: ${rarity.starter};
+            }
+            .red svg {
+              fill: ${faction.command};
+            }
+          `}
+        </style>
       </label>
     );
   });

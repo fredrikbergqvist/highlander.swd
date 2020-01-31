@@ -23,8 +23,10 @@ import RebelAllianceIcon from "../components/icon/RebelAllianceIcon";
 import GalacticEmpireIcon from "../components/icon/GalacticEmpireIcon";
 import SenateSealIcon from "../components/icon/SenateSealIcon";
 import HolocronIcon from "../components/icon/HolocronIcon";
+import { Rarity } from "../enums/Rarity";
+import HolocronFillIcon from "../components/icon/HolocronFilledIcon";
 
-export const getFilterIcon = (type: CardType | Sets | Affiliation) => {
+export const getFilterIcon = (type: CardType | Sets | Affiliation | Rarity) => {
   switch (type) {
     case CardType.battlefield:
       return BattleFieldIcon;
@@ -63,6 +65,8 @@ export const getFilterIcon = (type: CardType | Sets | Affiliation) => {
       return WayOfTheForceSetIcon;
     case Sets.AW:
       return AwakeningsSetIcon;
+    case Sets.CM:
+      return HolocronFillIcon;
 
     case Affiliation.hero:
       return RebelAllianceIcon;

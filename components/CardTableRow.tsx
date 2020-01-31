@@ -24,6 +24,12 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
   const collectionInfo = showCollection ? getCollectionCardInfo(card.code) : null;
   const factionClass = `faction-${card.faction_name}`;
   const CardModal = dynamic(() => import("./CardModal/CardModal"));
+  const getCost = () => {
+    if (card.type_name === CardType.character) {
+      return card.points || "";
+    }
+    return card.cost;
+  };
   return (
     <tr>
       <td className="set-info">
@@ -48,9 +54,7 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
 
       {!showCollection && (
         <>
-          <td className="cost">
-            {card.points || ""} {card.cost || ""}
-          </td>
+          <td className="cost">{getCost()}</td>
           <td>{card.health || ""}</td>
         </>
       )}
@@ -58,7 +62,8 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
         .name {
           text-align: left;
           padding-left: 5px;
-          border-left: 5px solid transparent;
+          border-left-width: 5px;
+          border-left-style: solid;
         }
         .name p {
           display: flex;
@@ -83,19 +88,12 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
           justify-content: space-around;
           border: none;
         }
-        .faction-Force {
-          fill: ${faction.force};
-        }
-        .faction-Command {
-          fill: ${faction.command};
-        }
-        .faction-Rogue {
-          fill: ${faction.rogue};
-        }
-        .faction-General {
-          fill: ${faction.general};
-        }
 
+        svg {
+          display: inline-block;
+          width: 20px;
+          padding: 2px 2px;
+        }
         .rarity-Starter {
           border-left-color: ${rarity.starter};
         }
@@ -111,11 +109,19 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
         .rarity-Legendary {
           border-left-color: ${rarity.legendary};
         }
-
-        svg {
-          display: inline-block;
-          width: 20px;
-          padding: 2px 2px;
+      `}</style>
+      <style jsx global>{`
+        .faction-Force {
+          fill: ${faction.force};
+        }
+        .faction-Command {
+          fill: ${faction.command};
+        }
+        .faction-Rogue {
+          fill: ${faction.rogue};
+        }
+        .faction-General {
+          fill: ${faction.general};
         }
       `}</style>
     </tr>

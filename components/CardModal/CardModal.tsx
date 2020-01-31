@@ -42,7 +42,7 @@ const CardModal: NextFunctionComponent<Props> = ({ card }) => {
           position: absolute;
           background: #fff;
           border: 2px solid #333;
-          padding: 0 10px;
+          padding: 10px;
         }
       `}</style>
     </div>
