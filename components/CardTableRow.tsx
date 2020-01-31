@@ -8,6 +8,7 @@ import { CardType } from "../enums/CardType";
 import { faction, rarity } from "../styles/colors";
 import dynamic from "next/dynamic";
 import { Affiliation } from "../enums/Affiliation";
+import { mediaWidth } from "../styles/sizes";
 
 interface OwnProps {
   card: Card;
@@ -55,15 +56,23 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
       {!showCollection && (
         <>
           <td className="cost">{getCost()}</td>
-          <td>{card.health || ""}</td>
+          <td className="health">{card.health || ""}</td>
         </>
       )}
       <style jsx>{`
+        td {
+          border-right: 1px solid #333;
+          text-align: center;
+          padding: 2px 5px;
+        }
+        td:last-child {
+          border-right: none;
+        }
         .name {
           text-align: left;
           padding-left: 5px;
-          border-left-width: 5px;
-          border-left-style: solid;
+          border-left: 5px solid transparent;
+          border-right: none;
         }
         .name p {
           display: flex;
@@ -74,13 +83,9 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
           margin-right: 5px;
         }
 
-        td {
-          border-right: 1px solid #333;
-          text-align: center;
-          padding: 2px 5px;
-        }
-        td:last-child {
-          border-right: none;
+        .cost,
+        .health {
+          display: none;
         }
         .set-info {
           display: flex;
@@ -109,6 +114,15 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
         .rarity-Legendary {
           border-left-color: ${rarity.legendary};
         }
+        @media (min-width: ${mediaWidth.l}) {
+          .cost,
+          .health {
+            display: table-cell;
+          }
+          .name {
+            border-right: 1px solid #333;
+          }
+        }
       `}</style>
       <style jsx global>{`
         .faction-Force {
@@ -123,6 +137,7 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
         .faction-General {
           fill: ${faction.general};
         }
+
       `}</style>
     </tr>
   );

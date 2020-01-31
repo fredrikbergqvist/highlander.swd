@@ -3,6 +3,7 @@ import { NextFunctionComponent } from "../pages";
 import React from "react";
 import CardTableSkeleton from "./CardTableSkeleton";
 import CardTableRow from "./CardTableRow";
+import { mediaWidth } from "../styles/sizes";
 
 interface OwnProps {
   cards: Card[];
@@ -36,8 +37,8 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading, showCollect
       </thead>
       <tbody className="tbody">
       {cards?.length > 0 &&
-      cards.map(card => <CardTableRow card={card} key={card.code} showCollection={showCollection} />)}
-      {cards?.length === 0 && isLoading && <CardTableSkeleton numberOfRows={15} />}
+      cards.map(card => <CardTableRow card={card} key={card.code} showCollection={showCollection}/>)}
+      {cards?.length === 0 && isLoading && <CardTableSkeleton numberOfRows={15}/>}
       {cards?.length === 0 && !isLoading && (
         <tr className={"no-results"}>
           <td colSpan={10}>
@@ -76,6 +77,10 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading, showCollect
         .name {
           width: 40%;
         }
+        .cost,
+        .health {
+          display: none;
+        }
         .cost {
           width: 70px;
         }
@@ -91,6 +96,13 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading, showCollect
         .no-results span {
           padding: 10px;
           display: block;
+        }
+
+        @media (min-width: ${mediaWidth.l}) {
+          .cost,
+          .health {
+            display: table-cell;
+          }
         }
       `}</style>
     </table>
