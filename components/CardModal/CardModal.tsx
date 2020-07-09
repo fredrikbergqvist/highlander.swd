@@ -36,13 +36,28 @@ const CardModal: NextFunctionComponent<Props> = ({ card }) => {
 
   return (
     <div className="card-modal">
-      {getCard()}
+      <div className="text-content">{getCard()}</div>
+      <div className="image-content">
+        <img src={card.imagesrc} alt={card.name} width="298" height="418" />
+      </div>
       <style jsx>{`
         .card-modal {
           position: absolute;
           background: #fff;
           border: 2px solid #333;
           padding: 10px;
+          top: 30%;
+          display: flex;
+          flex-direction: row;
+          z-index: 10;
+          left: 40%;
+        }
+
+        .text-content {
+          max-width: 300px;
+        }
+        .image-content {
+          margin-left: 20px;
         }
       `}</style>
     </div>

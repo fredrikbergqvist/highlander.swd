@@ -9,17 +9,19 @@ interface OwnProps {
   cards: Card[];
   isLoading: boolean;
   showCollection?: boolean;
+  hasCharacterFilter?: boolean;
 }
 
 type Props = OwnProps;
 
-const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading, showCollection = false }) => {
+const CardTable: NextFunctionComponent<Props> = props => {
+  const { cards, isLoading, showCollection = false, hasCharacterFilter = true } = props;
   const isLoadingClass = isLoading ? "loading" : "";
   return (
     <table className={`table ${isLoadingClass}`}>
       <thead className="thead">
       <tr>
-        <th className="set">#</th>
+        <th className="set-info">#</th>
         <th className="name">Name</th>
         {showCollection && (
           <>
@@ -29,16 +31,23 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading, showCollect
         )}
         {!showCollection && (
           <>
-            <th className="cost">Points/Cost</th>
-            <th className="health">Health</th>
+            <th className="cost">{hasCharacterFilter ? "Points/Cost" : "Cost"}</th>
+            {hasCharacterFilter && <th className="health">Health</th>}
           </>
         )}
       </tr>
       </thead>
       <tbody className="tbody">
       {cards?.length > 0 &&
-      cards.map(card => <CardTableRow card={card} key={card.code} showCollection={showCollection}/>)}
-      {cards?.length === 0 && isLoading && <CardTableSkeleton numberOfRows={15}/>}
+      cards.map(card => (
+        <CardTableRow
+          card={card}
+          key={card.code}
+          showCollection={showCollection}
+          hasCharacterFilter={hasCharacterFilter}
+        />
+      ))}
+      {cards?.length === 0 && isLoading && <CardTableSkeleton numberOfRows={15} />}
       {cards?.length === 0 && !isLoading && (
         <tr className={"no-results"}>
           <td colSpan={10}>
@@ -62,27 +71,20 @@ const CardTable: NextFunctionComponent<Props> = ({ cards, isLoading, showCollect
           border-bottom: 1px solid #333;
         }
 
-        tr {
-        }
-
         th {
           min-width: 20px;
-          width: 10%;
-          padding-right: 5px;
-          padding-left: 5px;
-        }
-        .set {
           width: 60px;
+          padding: 10px 5px;
         }
         .name {
-          width: 40%;
+          width: auto;
         }
         .cost,
         .health {
           display: none;
         }
         .cost {
-          width: 70px;
+          width: 90px;
         }
         .health {
           width: 50px;

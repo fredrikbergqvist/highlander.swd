@@ -13,11 +13,12 @@ import { mediaWidth } from "../styles/sizes";
 interface OwnProps {
   card: Card;
   showCollection?: boolean;
+  hasCharacterFilter: boolean;
 }
 
 type Props = OwnProps;
 
-const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = false }) => {
+const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = false, hasCharacterFilter = true }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const SetIcon = getFilterIcon(card.set_name as Sets);
   const TypeIcon = getFilterIcon(card.type_name as CardType);
@@ -31,6 +32,7 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
     }
     return card.cost;
   };
+  //TODO: populate a single modal with card data
   return (
     <tr>
       <td className="set-info">
@@ -56,7 +58,7 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
       {!showCollection && (
         <>
           <td className="cost">{getCost()}</td>
-          <td className="health">{card.health || ""}</td>
+          {hasCharacterFilter && <td className="health">{card.health || ""}</td>}
         </>
       )}
       <style jsx>{`
@@ -64,6 +66,7 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
           border-right: 1px solid #333;
           text-align: center;
           padding: 2px 5px;
+          width: 60px;
         }
         td:last-child {
           border-right: none;
@@ -137,7 +140,6 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
         .faction-General {
           fill: ${faction.general};
         }
-
       `}</style>
     </tr>
   );

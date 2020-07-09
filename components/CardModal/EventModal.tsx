@@ -22,17 +22,11 @@ const EventModal: NextFunctionComponent<Props> = ({ card }) => {
         </p>
         <p dangerouslySetInnerHTML={{ __html: card.text }} />
       </div>
-      <div className="image-content">
-        <img src={card.imagesrc} alt={card.name} />
-      </div>
 
       <style jsx>{`
         .event {
           display: flex;
           flex-direction: row;
-        }
-        .image-content {
-          margin-left: 20px;
         }
       `}</style>
     </div>

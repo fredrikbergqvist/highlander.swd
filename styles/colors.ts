@@ -3,12 +3,12 @@ export const rarity = {
   rare: "#6be0a2",
   uncommon: "#e5b66c",
   common: "#6c86e2",
-  starter: "#dbdbdb"
+  starter: "#999"
 };
 
 export const faction = {
   force: "#6c86e2",
   rogue: "#e5b66c",
   command: "#e26c6c",
-  general: "#dbdbdb"
+  general: "#999"
 };
