@@ -10,6 +10,8 @@ import dynamic from "next/dynamic";
 import { Affiliation } from "../enums/Affiliation";
 import { mediaWidth } from "../styles/sizes";
 
+const CardModal = dynamic(() => import("./CardModal/CardModal"));
+
 interface OwnProps {
   card: Card;
   showCollection?: boolean;
@@ -25,7 +27,6 @@ const CardTableRow: NextFunctionComponent<Props> = ({ card, showCollection = fal
   const AffiliationIcon = getFilterIcon(card.affiliation_name as Affiliation);
   const collectionInfo = showCollection ? getCollectionCardInfo(card.code) : null;
   const factionClass = `faction-${card.faction_name}`;
-  const CardModal = dynamic(() => import("./CardModal/CardModal"));
   const getCost = () => {
     if (card.type_name === CardType.character) {
       return card.points || "";
