@@ -1,35 +1,37 @@
 {
-  "name": "create-next-example-app",
-  "description": "A Next.js starter app.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zeit/now/tree/master/examples/nextjs"
-  },
+  "name": "swDestiny.net Holocron",
+  "description": "Star Wars Destiny card list",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "stage-build": "NODE_ENV=stage next build",
+    "start": "next start -p $PORT"
   },
+  "author": "Fredrik Bergqvist",
+  "homepage": "https://www.swdestiny.net",
   "dependencies": {
-    "isomorphic-unfetch": "3.0.0",
-    "next": "9.2.0",
-    "next-offline": "4.0.6",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "workbox-webpack-plugin": "4.3.1"
+    "isomorphic-unfetch": "3.1.0",
+    "axios": "0.21.1",
+    "next": "11.1.1",
+    "next-offline": "5.0.5",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "workbox-webpack-plugin": "6.2.4"
   },
   "devDependencies": {
-    "@types/node": "12.12.17",
-    "@types/react": "16.9.16",
-    "@types/react-dom": "16.9.4",
-    "@typescript-eslint/eslint-plugin": "2.11.0",
-    "@typescript-eslint/parser": "2.11.0",
-    "eslint": "6.7.2",
-    "eslint-config-prettier": "6.7.0",
-    "eslint-plugin-react": "7.17.0",
-    "eslint-plugin-react-hooks": "2.3.0",
+    "@types/google.analytics": "0.0.42",
+    "@types/node": "16.7.8",
+    "@types/react": "17.0.19",
+    "@types/react-dom": "16.9.14",
+    "@typescript-eslint/eslint-plugin": "4.30.0",
+    "@typescript-eslint/parser": "4.30.0",
+    "@types/styled-jsx": "3.4.4",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-react": "7.25.1",
+    "eslint-plugin-react-hooks": "4.2.0",
     "prettier": "1.19.1",
-    "typescript": "3.7.4"
+    "typescript": "4.4.2"
   }
 }

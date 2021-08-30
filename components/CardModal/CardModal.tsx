@@ -18,19 +18,19 @@ const CardModal: NextFunctionComponent<Props> = ({ card }) => {
       case CardType.event:
         return <EventModal card={card} />;
       case CardType.support:
-        return <p>event</p>;
+        return <p>support</p>;
       case CardType.character:
-        return <p>event</p>;
+        return <p>character</p>;
       case CardType.upgrade:
-        return <p>event</p>;
+        return <p>upgrade</p>;
       case CardType.battlefield:
-        return <p>event</p>;
+        return <p>battlefield</p>;
       case CardType.plot:
-        return <p>event</p>;
+        return <p>plot</p>;
       case CardType.downgrade:
-        return <p>event</p>;
+        return <p>downgrade</p>;
       default:
-        return <p>apa</p>;
+        return <p></p>;
     }
   };
 
@@ -56,6 +56,7 @@ const CardModal: NextFunctionComponent<Props> = ({ card }) => {
         .text-content {
           max-width: 300px;
         }
+
         .image-content {
           margin-left: 20px;
         }
