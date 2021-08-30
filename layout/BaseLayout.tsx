@@ -4,8 +4,7 @@ import dynamic from "next/dynamic";
 const DocumentHeader = dynamic(() => import("../components/DocumentHeader"));
 const SiteFooter = dynamic(() => import("../components/SiteFooter"));
 
-interface OwnProps {
-}
+type OwnProps = unknown
 
 type Props = OwnProps;
 const BaseLayout: React.FC<Props> = props => {

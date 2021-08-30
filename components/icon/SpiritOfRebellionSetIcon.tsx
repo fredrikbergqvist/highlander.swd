@@ -2,8 +2,7 @@ import IconBase, { IconBaseProps } from "./IconBase";
 import { NextFunctionComponent } from "../../pages";
 import React from "react";
 
-interface OwnProps {
-}
+type OwnProps = unknown
 
 type Props = OwnProps & IconBaseProps;
 

@@ -13,8 +13,7 @@ import { CardCollection } from "../@types/CardCollection";
 const CardTable = dynamic(() => import("../components/CardTable"));
 const CardSearchBar = dynamic(() => import("../components/CardSearchBar"));
 
-interface OwnProps {
-}
+type OwnProps = unknown
 
 type Props = OwnProps;
 

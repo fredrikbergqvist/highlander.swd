@@ -12,8 +12,7 @@ import { CardType } from "../enums/CardType";
 const CardTable = dynamic(() => import("../components/CardTable"));
 const CardSearchBar = dynamic(() => import("../components/CardSearchBar"));
 
-interface OwnProps {
-}
+type OwnProps = unknown
 
 type Props = OwnProps;
 

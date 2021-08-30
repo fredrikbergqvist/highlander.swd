@@ -24,19 +24,18 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
                                                                  showIcon = true
                                                                }) => {
   const checkboxMarkup = Object.keys(listObject).map(key => {
-    // @ts-ignore
     const val: keyof typeof listObject = key;
     const name: string = listObject[val] as string;
     const Icon = getFilterIcon(listObject[val]);
     const isChecked: boolean = filter.some(f => f === name);
     const labelTextClass = showText ? "" : "sr-only";
     const updateFilter = () => {
-      let updatedFilter = [...filter];
+      const updatedFilters = [...filter];
       if (isChecked) {
-        return onChange(updatedFilter.filter(f => f !== name));
+        return onChange(updatedFilters.filter(f => f !== name));
       }
-      updatedFilter.push(name);
-      onChange(updatedFilter);
+      updatedFilters.push(name);
+      onChange(updatedFilters);
     };
     return (
       <label className={`checkbox-label ${key}`} htmlFor={`${iconPrefix}checkbox-${key}`} key={key}>
@@ -49,6 +48,7 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
             display: inline-block;
             cursor: pointer;
           }
+
           svg {
             width: 40px;
             fill: #333;
@@ -58,19 +58,24 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
             background-color: #fff;
             opacity: 0.5;
           }
+
           input {
             position: absolute;
             left: -999em;
           }
+
           input:focus + svg {
             opacity 1;
           }
+
           input:checked + svg {
             opacity 1;
           }
+
           label {
             position: relative;
           }
+
           input:focus + span,
           label:hover span {
             clip: auto;
@@ -92,21 +97,26 @@ const CardSearchCheckboxGroup: NextFunctionComponent<Props> = ({
             .L svg {
               fill: ${rarity.legendary};
             }
+
             .R svg {
               fill: ${rarity.rare};
             }
+
             .yellow svg,
             .U svg {
               fill: ${rarity.uncommon};
             }
+
             .blue svg,
             .C svg {
               fill: ${rarity.common};
             }
+
             .gray svg,
             .S svg {
               fill: ${rarity.starter};
             }
+
             .red svg {
               fill: ${faction.command};
             }

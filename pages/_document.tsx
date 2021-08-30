@@ -5,6 +5,7 @@ class HighlanderDocument extends Document {
     const originalRenderPage = ctx.renderPage;
     ctx.renderPage = () =>
       originalRenderPage({
+        // eslint-disable-next-line react/display-name
         enhanceApp: (App: any) => (props: any) => <App {...props} />
       });
 

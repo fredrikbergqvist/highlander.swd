@@ -1,8 +1,7 @@
 import IconBase, { IconBaseProps } from "./IconBase";
 import { NextFunctionComponent } from "../../pages";
 
-interface OwnProps {
-}
+type OwnProps = unknown
 
 type Props = OwnProps & IconBaseProps;
 
