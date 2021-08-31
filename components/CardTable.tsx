@@ -74,7 +74,7 @@ const CardTable: NextFunctionComponent<Props> = props => {
           hasCharacterFilter={hasCharacterFilter}
         />
       ))}
-      {cards?.length === 0 && !isLoading && (
+      {cards?.length === 0 && isLoading && (
         <tr className="loading-results">
           <td colSpan={4}>
             <span>Please wait while the card database is loading...</span>
@@ -85,7 +85,7 @@ const CardTable: NextFunctionComponent<Props> = props => {
       {visibleCards.length === 0 && !isLoading && (
         <tr className="no-results">
           <td colSpan={4}>
-            <span>No results founds!</span>
+            <span>No results founds 😥</span>
             <span>Try a different set of filters or search terms!</span>
           </td>
         </tr>

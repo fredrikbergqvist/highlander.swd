@@ -246,6 +246,12 @@ const HighlanderApp = ({ ...initialProps }: any) => {
           margin: 0;
         }
 
+        a:hover,
+        a:visited,
+        a {
+          color: #333333;
+        }
+
         svg {
           width: 20px;
         }
