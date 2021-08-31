@@ -246,6 +246,10 @@ const HighlanderApp = ({ ...initialProps }: any) => {
           margin: 0;
         }
 
+        svg {
+          width: 20px;
+        }
+
         .sr-only {
           border: 0;
           clip: rect(1px, 1px, 1px, 1px);

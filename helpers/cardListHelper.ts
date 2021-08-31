@@ -37,6 +37,7 @@ const getStoredCards = async (): Promise<Card[]> => {
 
 export const getCards = async (filter: CardFilter = getCardFilterLocalStorage()): Promise<Card[]> => {
   let filteredCards = await getStoredCards();
+  console.time("filters");
   filteredCards = filterCardsByQuery(filter.query, filteredCards);
   filteredCards = filterCardsBySets(filter.sets, filteredCards);
   filteredCards = filterCardsByType(filter.types, filteredCards);
@@ -44,5 +45,6 @@ export const getCards = async (filter: CardFilter = getCardFilterLocalStorage())
   filteredCards = filterCardsByAffiliation(filter.affiliation, filteredCards);
   filteredCards = filterCardsByFaction(filter.faction, filteredCards);
   filteredCards = await filterCardsByCollection(filter, filteredCards);
+  console.timeEnd("filters");
   return filteredCards;
 };

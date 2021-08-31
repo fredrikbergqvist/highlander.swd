@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
+import { NextFunctionComponent } from "../pages";
 
-const MainNavigation = () => {
+type OwnProps = unknown;
+const MainNavigation: NextFunctionComponent<OwnProps> = () => {
   return (
     <nav className={`navigation`}>
       <ul className={`list `}>
@@ -19,18 +21,19 @@ const MainNavigation = () => {
           padding: 0;
           width: 100%;
         }
+
         .icon {
           fill: currentColor;
           width: 24px;
           height: 24px;
-          display: inline-block;
-          fontsize: 1.5rem;
+          font-size: 1.5rem;
           transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
           user-select: none;
           flex-shrink: 0;
           display: block;
           margin: 0 auto;
         }
+
         .list {
           list-style: none;
           padding: 0;
@@ -48,6 +51,7 @@ const MainNavigation = () => {
           margin-right: 0px;
           text-align: center;
         }
+
         .listItem:last-child {
           margin-right: 0;
         }

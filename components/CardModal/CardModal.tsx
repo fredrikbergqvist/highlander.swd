@@ -59,6 +59,8 @@ const CardModal: NextFunctionComponent<Props> = ({ card }) => {
 
         .image-content {
           margin-left: 20px;
+          min-width: 298px;
+          min-height: 418px;
         }
       `}</style>
     </div>
