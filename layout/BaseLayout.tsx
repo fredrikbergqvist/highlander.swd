@@ -1,10 +1,8 @@
 import * as React from "react";
-import dynamic from "next/dynamic";
+import DocumentHeader from "../components/DocumentHeader";
+import SiteFooter from "../components/SiteFooter";
 
-const DocumentHeader = dynamic(() => import("../components/DocumentHeader"));
-const SiteFooter = dynamic(() => import("../components/SiteFooter"));
-
-type OwnProps = unknown
+type OwnProps = unknown;
 
 type Props = OwnProps;
 const BaseLayout: React.FC<Props> = props => {
@@ -23,6 +21,7 @@ const BaseLayout: React.FC<Props> = props => {
           width: 90%;
           margin: 0 auto;
         }
+
         .content {
           min-height: calc(100vh - 110px);
         }
